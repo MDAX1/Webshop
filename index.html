@@ -19,53 +19,69 @@
   </head>
 
   <body>
-    <section class="order-section">
-      
-      <h2>Beställningsformulär</h2>
+   <section class="order-section container my-5">
+     <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+       <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="mb-4 text-center">Beställningsformulär</h2>
 
-      <form id="order-form" novalidate>
-        <div class="form-group">
-          <label for="name">Namn</label>
-          <input type="text" id="name" name="name" />
-          <small class="error" id="name-error"></small>
+          <form id="order-form" novalidate>
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="name" class="form-label">Namn</label>
+                <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Ange ditt namn">
+                <small id="name-error" class="text-danger"></small>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="email" class="form-label">E-post</label>
+                <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="namn@email.com">
+                <small id="email-error" class="text-danger"></small>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="phone" class="form-label">Telefon</label>
+                <input type="text" class="form-control form-control-lg" id="phone" name="phone" placeholder="070-123 45 67">
+                <small id="phone-error" class="text-danger"></small>
+              </div>
+
+              <div class="col-12">
+                <label for="street" class="form-label">Gatuadress</label>
+                <input type="text" class="form-control form-control-lg" id="street" name="street" placeholder="Exempelgatan 1">
+                <small id="street-error" class="text-danger"></small>
+              </div>
+
+              <div class="col-12 col-md-4">
+                <label for="zipcode" class="form-label">Postnummer</label>
+                <input type="text" class="form-control form-control-lg" id="zipcode" name="zipcode" placeholder="12345">
+                <small id="zipcode-error" class="text-danger"></small>
+              </div>
+
+              <div class="col-12 col-md-8">
+                <label for="city" class="form-label">Ort</label>
+                <input type="text" class="form-control form-control-lg" id="city" name="city" placeholder="Stockholm">
+                <small id="city-error" class="text-danger"></small>
+              </div>
+
+              <div class="col-12">
+                <small id="product-error" class="text-danger d-block mb-2"></small>
+              </div>
+
+              <div class="col-12 d-grid">
+                <button type="submit" class="btn btn-primary btn-lg rounded-3">
+                  Beställ produkt
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div id="success-message" class="mt-4 fw-semibold text-success text-center"></div>
         </div>
-
-        <div class="form-group">
-          <label for="email">E-post</label>
-          <input type="text" id="email" name="email" />
-          <small class="error" id="email-error"></small>
-        </div>
-
-        <div class="form-group">
-          <label for="phone">Telefon</label>
-          <input type="text" id="phone" name="phone" />
-          <small class="error" id="phone-error"></small>
-        </div>
-
-        <div class="form-group">
-          <label for="street">Gatuadress</label>
-          <input type="text" id="street" name="street" />
-          <small class="error" id="street-error"></small>
-        </div>
-
-        <div class="form-group">
-          <label for="zipcode">Postnummer</label>
-          <input type="text" id="zipcode" name="zipcode" />
-          <small class="error" id="zipcode-error"></small>
-        </div>
-
-        <div class="form-group">
-          <label for="city">Ort</label>
-          <input type="text" id="city" name="city" />
-          <small class="error" id="city-error"></small>
-        </div>
-
-        <small class="error" id="product-error"></small>
-        <button type="submit">Beställ produkt</button>
-      </form>
-
-      <div id="success-message" class="success-message"></div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
   </body>
 </html>
