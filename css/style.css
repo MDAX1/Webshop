@@ -1,7 +1,10 @@
-header {
+.my-nav a {
+    color: rgb(241, 6, 6);
+    text-decoration: none;
     
-    background-image: url();
-    background-size: cover;
-    background-position: center;
-    height: 300px;
+}
+
+.my-nav a:hover {
+    color: lightgray;
+
 }
