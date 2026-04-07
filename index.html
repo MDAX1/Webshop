@@ -19,14 +19,39 @@
   </head>
 
   <body class="bg-dark">
-    <header class="text-bg-dark p-3">
-      <nav class="my-nav d-flex justify-content-between align-items-center">
-        <h3 class="m-0">Webshop</h3>
+    <header class="bg-primary p-2">
+      <nav class="navbar navbar-expand-lg navbar-dark container">
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold" href="index.html">Webshop</a>
 
-        <div class="d-flex gap-4">
-          <a href="index.html">Home</a>
-          <a href="pages/aboutUs.html">About Us</a>
-          <a href="pages/contactUs.html">Contact Us</a>
+        <!-- Hamburger button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav gap-lg-3 text-center">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="pages/aboutUs.html">About</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="pages/contactUs.html">Contact</a>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>
