@@ -26,14 +26,26 @@ body {
 
 .order-section small {
   min-height: 10px;
-  
-.my-nav a {
+}
+  .my-nav a {
     color: rgb(241, 6, 6);
     text-decoration: none;
-    
-}
+  }
 
-.my-nav a:hover {
+  .my-nav a:hover {
     color: lightgray;
+  }
 
+#hero-section {
+  background-image: url('/images/bg-pic.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 20vh;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
 }
+
