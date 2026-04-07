@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width='device-width', initial-scale=1.0" />
+    <title>Contact us</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/webshop.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body class="bg-dark">
+    <header class="text-bg-dark p-3">
+      <nav class="my-nav d-flex justify-content-between align-items-center">
+        <h3 class="m-0">Webshop</h3>
+        <div class="d-flex gap-4">
+          <a href="../index.html">Home</a>
+          <a href="/pages/aboutUs.html">About Us</a>
+          <a href="contactUs.html">Contact Us</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container text-white ms-2 mt-4 text-start">
+      <form action="thankyou.html">
+        <h3 class="text-start">contact us</h3>
+
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-control"
+          placeholder="First and last name"
+          required
+        />
+
+        <label for="tel">Phone Number</label>
+        <input
+          type="tel"
+          id="tel"
+          name="tel"
+          class="form-control"
+          placeholder="+46xxxxxxxxx"
+          required
+        />
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          placeholder="email@exempel.com"
+          required
+        />
+
+        <label for="text">text</label>
+        <textarea
+          name="text"
+          id="text"
+          class="form-control"
+          rows="5"
+          cols="50"
+          required
+        ></textarea>
+        <br />
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </main>
+
+    <footer class="bg-primary text-center text-white py-4 mt-5">
+      <div class="container">
+        <ul class="nav justify-content-center mb-3">
+          <li class="nav-item">
+            <a href="/#" class="btn btn-primary mx-1">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/pages/contactUs.html" class="btn btn-primary mx-1"
+              >Shop</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="/pages/aboutUs.html" class="btn btn-primary mx-1">About</a>
+          </li>
+        </ul>
+        <hr />
+        <p class="mb-0 opacity-75">© 2026 webshop, inc</p>
+      </div>
+    </footer>
+  </body>
+</html>
