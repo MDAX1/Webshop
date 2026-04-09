@@ -1,121 +1,122 @@
-const productContainer = document.getElementById("products");
-
-if (productContainer) {
-  fetch("https://dummyjson.com/products")
-    .then((res) => res.json())
-    .then((data) => {
-      data.products.forEach((product) => {
-        const card = `
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-          <div class="card h-100">
-            <img src="${product.thumbnail}" class="card-img-top" style="height:200px; object-fit:cover;">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">${product.title}</h5>
-              <p class="card-text">${product.price} kr</p>
-              <a href="pages/order.html?id=${product.id}" class="btn btn-primary mt-auto">Buy</a>
+    // ── HELPERS ──────────────────────────────────────────────────────────────
+    function renderStars(rating) {
+      if (!rating) return '';
+      const full  = Math.round(rating);
+      const empty = 5 - full;
+      return `<div class="stars">${'&#9733;'.repeat(full)}<span style="opacity:.25">${'&#9733;'.repeat(empty)}</span></div>`;
+    }
+ 
+    function discountPct(product) {
+      if (!product.discountPercentage) return 0;
+      return Math.round(product.discountPercentage);
+    }
+ 
+    function originalPrice(product) {
+      return (product.price / (1 - product.discountPercentage / 100)).toFixed(2);
+    }
+ 
+    function renderCard(product, index) {
+      const onSale   = discountPct(product) >= 5;
+      const saleBadge = onSale
+        ? `<span class="sale-badge">-${discountPct(product)}%</span>` : '';
+      const priceHTML = onSale
+        ? `<span class="price-old">${originalPrice(product)} kr</span>
+           <span class="price-sale">${product.price} kr</span>`
+        : `${product.price} kr`;
+ 
+      return `
+        <div class="col mb-5" style="animation-delay:${index * 0.06}s">
+          <div class="product-card card h-100">
+            ${saleBadge}
+            <div class="img-wrap">
+              <img src="${product.thumbnail}" alt="${product.title}" loading="lazy" />
+            </div>
+            <div class="card-body text-center">
+              <p class="product-category">${product.category}</p>
+              <h5 class="product-name">${product.title}</h5>
+              ${renderStars(product.rating)}
+              <p class="product-desc">${product.description}</p>
+              <p class="product-price">${priceHTML}</p>
+              <p class="product-stock ${product.stock < 10 ? 'low-stock' : ''}">
+                ${product.stock < 10 ? `⚠ Only ${product.stock} left` : `In stock: ${product.stock}`}
+              </p>
+            </div>
+            <div class="card-footer text-center">
+              <a class="btn-shop" href="pages/order.html?id=${product.id}">Buy now</a>
             </div>
           </div>
-        </div>
-        `;
-        productContainer.innerHTML += card;
+        </div>`;
+    }
+ 
+    // ── PRODUCT GRID ─────────────────────────────────────────────────────────
+    const productContainer = document.getElementById("products");
+ 
+    if (productContainer) {
+      productContainer.innerHTML = `<div class="col-12 text-center py-5 text-muted">Loading products…</div>`;
+ 
+      fetch("https://dummyjson.com/products")
+        .then(res => res.json())
+        .then(data => {
+          productContainer.innerHTML = data.products
+            .map((product, i) => renderCard(product, i))
+            .join('');
+        })
+        .catch(() => {
+          productContainer.innerHTML = `<div class="col-12 text-center py-5 text-muted">Could not load products. Please try again later.</div>`;
+        });
+    }
+ 
+    // ── SINGLE PRODUCT (order page) ───────────────────────────────────────────
+    const urlParams  = new URLSearchParams(window.location.search);
+    const productId  = urlParams.get("id");
+ 
+    if (productId) {
+      fetch(`https://dummyjson.com/products/${productId}`)
+        .then(res => res.json())
+        .then(product => {
+          const form = document.getElementById("order-form");
+          if (form) {
+            const title = document.createElement("h4");
+            title.textContent = "Product: " + product.title;
+            form.prepend(title);
+          }
+        });
+    }
+ 
+    // ── FORM VALIDATION ───────────────────────────────────────────────────────
+    const form = document.getElementById("order-form");
+ 
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+ 
+        const fields = {
+          name:    { min: 2,  max: 50,  msg: "Namnet måste vara 2–50 tecken." },
+          email:   { min: 1,  max: 50,  msg: "Ogiltig e-post." },
+          phone:   { regex: /^[0-9\-() ]{1,20}$/, msg: "Telefon får bara innehålla siffror, -, () och max 20 tecken." },
+          street:  { min: 2,  max: 50,  msg: "Adress måste vara 2–50 tecken." },
+          city:    { min: 2,  max: 20,  msg: "Ort måste vara 2–20 tecken." },
+          zipcode: { regex: /^[0-9]{5}$/, msg: "Postnummer måste vara exakt 5 siffror." }
+        };
+ 
+        let isValid = true;
+ 
+        for (const [id, rules] of Object.entries(fields)) {
+          const value = document.getElementById(id).value.trim();
+          const errorEl = document.getElementById(`${id}-error`);
+          errorEl.textContent = "";
+ 
+          let fieldOk = true;
+          if (rules.regex)           fieldOk = rules.regex.test(value);
+          else if (id === "email")   fieldOk = value.includes("@") && value.length <= rules.max;
+          else                       fieldOk = value.length >= rules.min && value.length <= rules.max;
+ 
+          if (!fieldOk) {
+            errorEl.textContent = rules.msg;
+            isValid = false;
+          }
+        }
+ 
+        if (isValid) window.location.href = "/pages/thankyou.html";
       });
-    });
-}
-
-// HÄMTA VALD PRODUKT
-const urlParams = new URLSearchParams(window.location.search);
-const productId = urlParams.get("id");
-
-if (productId) {
-  fetch(`https://dummyjson.com/products/${productId}`)
-    .then((res) => res.json())
-    .then((product) => {
-      const form = document.getElementById("order-form");
-
-      if (form) {
-        const title = document.createElement("h4");
-        title.textContent = "Product: " + product.title;
-        form.prepend(title);
-      }
-    });
-}
-
-// FORM VALIDERING
-
-const form = document.getElementById("order-form");
-
-if (form) {
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    let isValid = true;
-
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const street = document.getElementById("street").value.trim();
-    const city = document.getElementById("city").value.trim();
-    const zipcode = document.getElementById("zipcode").value.trim();
-
-    const nameError = document.getElementById("name-error");
-    const emailError = document.getElementById("email-error");
-    const phoneError = document.getElementById("phone-error");
-    const streetError = document.getElementById("street-error");
-    const cityError = document.getElementById("city-error");
-    const zipcodeError = document.getElementById("zipcode-error");
-
-    // Återställning
-    nameError.textContent = "";
-    emailError.textContent = "";
-    phoneError.textContent = "";
-    streetError.textContent = "";
-    cityError.textContent = "";
-    zipcodeError.textContent = "";
-
-    // VALIDERING
-
-    // Namn (2–50 längd)
-    if (name.length < 2 || name.length > 50) {
-      nameError.textContent = "Namnet måste vara 2–50 tecken.";
-      isValid = false;
     }
-
-    // Epost
-    if (!email.includes("@") || email.length > 50) {
-      emailError.textContent = "Ogiltig e-post.";
-      isValid = false;
-    }
-
-    // Telefon
-    const phoneRegex = /^[0-9\-() ]{1,20}$/;
-    if (!phoneRegex.test(phone)) {
-      phoneError.textContent =
-        "Telefon får bara innehålla siffror, -, () och max 20 tecken.";
-      isValid = false;
-    }
-
-    // Gatuadress
-    if (street.length < 2 || street.length > 50) {
-      streetError.textContent = "Adress måste vara 2–50 tecken.";
-      isValid = false;
-    }
-
-    // Ort
-    if (city.length < 2 || city.length > 20) {
-      cityError.textContent = "Ort måste vara 2–20 tecken.";
-      isValid = false;
-    }
-
-    // Postnummer
-    const zipRegex = /^[0-9]{5}$/;
-    if (!zipRegex.test(zipcode)) {
-      zipcodeError.textContent = "Postnummer måste vara exakt 5 siffror.";
-      isValid = false;
-    }
-
-    // Om allt är ok skicka meddelande
-    if (isValid) {
-      window.location.href = "/pages/thankyou.html";
-    }
-  });
-}

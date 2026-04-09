@@ -4,18 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Webshop</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Your stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-  </script>
-  <script src="/js/webshop.js" defer></script>
 </head>
 
-<body class="bg-dark text-white d-flex flex-column min-vh-100">
-  <header class="bg-primary p-3">
-    <nav class="navbar navbar-expand-lg navbar-dark container">
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container px-4">
       <a class="navbar-brand fw-bold fs-4" href="index.html">Webshop</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -25,28 +33,47 @@
           <li class="nav-item"><a class="nav-link" href="pages/contactUs.html">Contact</a></li>
         </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header>
+    <div class="container px-4 px-lg-5 text-center">
+      <div class="hero-label">New Collection 2025</div>
+      <h1>Shop in<br/>style.</h1>
+      <p>Curated goods for the discerning eye — discover pieces worth keeping.</p>
+    </div>
   </header>
-<section id="hero-section" class="text-center text-white d-flex align-items-center">
-  <div class="container">
-    <h1 class="display-5 fw-bold">Welcome to Webshop!</h1>
-    <p class="lead opacity-75">Discover amazing products curated just for you.</p>
-    <a href="#products" class="btn btn-primary btn-lg mt-3">Shop Now</a>
-  </div>
-</section>
-  <main class="container my-5 flex-grow-1">
-    <div id="products" class="row row-cols-1 row-cols-md-3 g-4 justify-content-center"></div>
+
+  <!-- Products -->
+  <main class="flex-grow-1 bg-light">
+    <section class="py-5">
+      <div class="container px-4 px-lg-5">
+        <div class="text-center mb-4">
+          <p class="section-label">Our offerings</p>
+          <h2 class="section-title">Featured Products <span class="section-rule"></span></h2>
+        </div>
+        <div id="products" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4"></div>
+      </div>
+    </section>
   </main>
+
+  <!-- Footer -->
   <footer class="bg-primary text-center text-white py-4 mt-auto">
     <div class="container">
       <ul class="nav justify-content-center mb-3">
-        <li class="nav-item"><a href="/#" class="btn btn-primary mx-1">Home</a></li>
-        <li class="nav-item"><a href="/pages/aboutUs.html" class="btn btn-primary mx-1">About</a></li>
-        <li class="nav-item"><a href="/pages/contactUs.html" class="btn btn-primary mx-1">Contact</a></li>
+        <li class="nav-item"><a href="index.html" class="nav-link text-white px-3">Home</a></li>
+        <li class="nav-item"><a href="pages/aboutUs.html" class="nav-link text-white px-3">About</a></li>
+        <li class="nav-item"><a href="pages/contactUs.html" class="nav-link text-white px-3">Contact</a></li>
       </ul>
-      <hr class="opacity-50" />
-      <p class="mb-0 opacity-75">© 2026 Webshop, Inc</p>
+      <hr class="opacity-25" />
+      <p class="mb-0 opacity-75 small">&copy; 2026 Webshop, Inc</p>
     </div>
   </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- App JS -->
+  <script src="js/webshop.js" defer></script>
 </body>
 </html>

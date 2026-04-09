@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,52 +6,53 @@
   <title>Thank You</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body class="bg-dark text-light d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100">
 
-  <!-- HEADER / NAVBAR -->
-  <header class="bg-primary">
-    <nav class="navbar navbar-expand-lg navbar-dark container">
-      <a class="navbar-brand fw-bold" href="../index.html">Webshop</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav gap-lg-3 text-center">
-          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="aboutUs.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container px-4">
+    <a class="navbar-brand fw-bold fs-4" href="../index.html">Webshop</a>
 
-  <!-- MAIN -->
-  <main class="flex-grow-1 d-flex justify-content-center align-items-center py-5">
-    <div class="col-lg-6 col-md-8 col-12">
-      <div class="card bg-secondary text-light shadow-lg p-5 text-center">
-        <h1 class="mb-4">Thank You!</h1>
-        <p class="mb-4">We have received your request and will get back to you shortly.</p>
-        <a href="../index.html" class="btn btn-primary btn-lg">Back to Home</a>
-      </div>
-    </div>
-  </main>
+    <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <!-- FOOTER -->
-  <footer class="bg-primary text-center text-white py-4">
-    <div class="container">
-      <ul class="nav justify-content-center mb-3">
-        <li class="nav-item"><a href="../index.html" class="nav-link text-white">Home</a></li>
-        <li class="nav-item"><a href="aboutUs.html" class="nav-link text-white">About</a></li>
-        <li class="nav-item"><a href="contactUs.html" class="nav-link text-white">Contact</a></li>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav gap-lg-3 text-center">
+
+        <li class="nav-item">
+          <a class="nav-link" href="../index.html">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="aboutUs.html">About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="contactUs.html">Contact</a>
+        </li>
+
       </ul>
-      <hr class="border-light">
-      <p class="mb-0 opacity-75">© 2026 Webshop, Inc</p>
     </div>
-  </footer>
+  </div>
+</nav>
+
+<main class="flex-grow-1 d-flex justify-content-center align-items-center">
+
+  <div class="card p-5 text-center shadow">
+    <h1>Thank You!</h1>
+    <p>Your order has been received.</p>
+    <a href="../index.html" class="btn btn-dark mt-3">Back to Home</a>
+  </div>
+
+</main>
+
+<footer class="text-center text-white py-4 mt-auto">
+  <p>© 2026 Webshop</p>
+</footer>
 
 </body>
 </html>
